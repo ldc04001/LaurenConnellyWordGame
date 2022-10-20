@@ -31,8 +31,8 @@ def printGuessAccuracy(guess, actual):
     letter = guess[index]
 
     # Check if the letter at this index of the user's guess is in the secret word AT ALL or not
-    if:
-
+    if(letter == actual[0:6]):
+    
       # If the letter is in the secret word, is it also AT THE CURRENT INDEX in the secret word?
       if(letter == secret[position]):
 
@@ -43,18 +43,49 @@ def printGuessAccuracy(guess, actual):
       else:
 
         # ...so we'll print it out with a yellow background
-
+        printColorfulLetter(letter, True, False)
+        
     # ...but if the letter is not in the word at all...
     else:
       # ...print it out with a red background
+      printColorfulLetter(letter, False, False)
       
     # Don't worry about the line of code below, it works. It just handles the transition between colors
     print(Style.RESET_ALL + " ", end="")
 
 # TO-DO: Write a Function that takes in a six-lettered word from the user
+def getUserGuess(userWord):
+  userGuess = ""
+
+  # if the word is less than or greater than 6 letters, ask the user to guess again
+  while(len(userGuess) > 6 or len(userGuess) <6):
+    userGuess = input("Enter a six letter word: ")
+
+# store ther user's guess
+  return userGuess
+  
 
 # This marks the end of the function definitions, below this is where the program will actually start!
 
 ### Main Program ###
 
-# TO-DO: Write the logic of the game here!
+# Fun Word game title
+print(r"""
+  ________                                __  .__            __                            .___
+ /  _____/ __ __   ____   ______ ______ _/  |_|  |__ _____ _/  |_  __  _  _____________  __| _/
+/   \  ___|  |  \_/ __ \ /  ___//  ___/ \   __\  |  \\__  \\   __\ \ \/ \/ /  _ \_  __ \/ __ | 
+\    \_\  \  |  /\  ___/ \___ \ \___ \   |  | |   Y  \/ __ \|  |    \     (  <_> )  | \/ /_/ | 
+ \______  /____/  \___  >____  >____  >  |__| |___|  (____  /__|     \/\_/ \____/|__|  \____ | 
+        \/            \/     \/     \/             \/     \/                                \/
+""")
+
+# Explain the rules of the game
+print("Welcome to Guess That Word!")
+print("~~~~~~~~~~~~~~~~~~~~~~~~~~")
+print("You have six tries to get the word correct")
+print("The word is SIX CHARACTERS long, and you must enter a guess of this length.")
+print("If a letter is in the correct place, it will turn green")
+print("If a letter is in the word but NOt in the correct place, it will turn yellow")
+print("If the letter is NOT in the word, it will turn red")
+print()
+print("Good luck!")
