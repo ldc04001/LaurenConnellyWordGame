@@ -3,6 +3,8 @@
 # We'll learn about how this line of code works later in the course - for now just know it loads the colored text
 from colorama import Fore, Back, Style
 
+secret = "bottle"
+
 # Function that prints out a letter with a colorful background
 def printColorfulLetter(letter, isLetterInWord, isLetterInCorrectPlace = False):
 
@@ -29,12 +31,13 @@ def printGuessAccuracy(guess, actual):
 
     # Grab the letter from the guess
     letter = guess[index]
-
+    secret = actual
+    
     # Check if the letter at this index of the user's guess is in the secret word AT ALL or not
-    if(letter == actual[0:6]):
+    if(letter in secret):   
     
       # If the letter is in the secret word, is it also AT THE CURRENT INDEX in the secret word?
-      if(letter == secret[position]):
+      if(letter == secret[index]):
 
         # Then print it out with a green background
         printColorfulLetter(letter, True, True)
@@ -62,7 +65,7 @@ def getUserGuess(userWord):
     userGuess = input("Enter a six letter word: ")
 
 # store ther user's guess
-  return userGuess
+  return userGuess.lower()
   
 
 # This marks the end of the function definitions, below this is where the program will actually start!
@@ -89,3 +92,19 @@ print("If a letter is in the word but NOt in the correct place, it will turn yel
 print("If the letter is NOT in the word, it will turn red")
 print()
 print("Good luck!")
+print()
+
+# ask the user to enter their word guess
+userGuess = ""
+
+while (userGuess != secret): 
+  userGuess = getUserGuess("")
+  printGuessAccuracy(userGuess, secret)
+  print()
+
+  if (userGuess == secret):
+    print("you win")
+
+# if they guess incorrectly six times, end the game
+
+# if they guess the word correctly, then tell them they won the game
