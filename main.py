@@ -1,9 +1,6 @@
 ### Setup Section ###
 
-# We'll learn about how this line of code works later in the course - for now just know it loads the colored text
 from colorama import Fore, Back, Style
-
-secret = "bottle"
 
 # Function that prints out a letter with a colorful background
 def printColorfulLetter(letter, isLetterInWord, isLetterInCorrectPlace = False):
@@ -53,10 +50,9 @@ def printGuessAccuracy(guess, actual):
       # ...print it out with a red background
       printColorfulLetter(letter, False, False)
       
-    # Don't worry about the line of code below, it works. It just handles the transition between colors
     print(Style.RESET_ALL + " ", end="")
 
-# TO-DO: Write a Function that takes in a six-lettered word from the user
+# Write a Function that takes in a six-lettered word from the user
 def getUserGuess(userWord):
   userGuess = ""
 
@@ -94,20 +90,24 @@ print()
 print("Good luck!")
 print()
 
-# ask the user to enter their word guess
+# Make sure the user's guess starts blank
 userGuess = ""
 
+# Decide what your secret word is
+secret = "bottle"
 count = 0
 
-while count < 7 and userGuess != secret: 
+# Start asking the user to guess, but only allow six guesses.
+while count < 6 and userGuess != secret: 
   userGuess = getUserGuess("")
   printGuessAccuracy(userGuess, secret)
   count += 1
   print()
   
-  if (userGuess == secret):
-    print("you win")
-
 # if they guess incorrectly six times, end the game
-
+if count == 6:
+    print("Sorry, you are out of guesses! You lose!")
+  
 # if they guess the word correctly, then tell them they won the game
+if (userGuess == secret):
+    print("You win!")
