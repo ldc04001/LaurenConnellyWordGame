@@ -97,11 +97,14 @@ print()
 # ask the user to enter their word guess
 userGuess = ""
 
-while (userGuess != secret): 
+count = 0
+
+while count < 7 and userGuess != secret: 
   userGuess = getUserGuess("")
   printGuessAccuracy(userGuess, secret)
+  count += 1
   print()
-
+  
   if (userGuess == secret):
     print("you win")
 
